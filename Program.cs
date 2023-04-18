@@ -10,10 +10,10 @@
 Console.WriteLine($"Bem-vindo a Gabi Airlines! Vamos começar seu atendimento.");
 
 int indexPassageiro = 0;
-string[] passageiro = new string [5];
-string[] origem = new string [5];
-string[] destino = new string [5];
-string[] data = new string [5];
+string[] passageiro = new string[5];
+string[] origem = new string[5];
+string[] destino = new string[5];
+string[] data = new string[5];
 
 Console.WriteLine($"Primeiramente digite a sua senha numérica: ");
 int senha = int.Parse(Console.ReadLine());
@@ -31,18 +31,54 @@ Agora selecione a opção desejada:
 0- Sair");
 char escolha = char.Parse(Console.ReadLine());
 
-while(escolha != '0')
+switch (escolha)
 {
-    Console.WriteLine(@$"
-    Agora selecione a opção desejada:
-    1 - Cadastrar Passagem
-    2 - Listar Passagens
-    0- Sair");
-    escolha = char.Parse(Console.ReadLine());
+    case '1':
+        Console.WriteLine($"Insira seu nome: ");
+        passageiro[indexPassageiro] = Console.ReadLine();
+        Console.WriteLine($"Qual a origem do voo?: ");
+        origem[indexPassageiro] = Console.ReadLine();
+        Console.WriteLine($"Qual o destino do voo?: ");
+        destino[indexPassageiro] = Console.ReadLine();
+        Console.WriteLine($"Qual a data do voo?: ");
+        data[indexPassageiro] = Console.ReadLine();
+        indexPassageiro++;
+        Console.WriteLine($"Ótimo! Sua passagem foi cadastrada");
+        break;
 
-    switch (escolha)
+    case '2':
+        for (int i = 0; i < indexPassageiro; i++)
+        {
+            Console.WriteLine($"Passagem #{i + 1}");
+            Console.WriteLine($"Nome do passageiro: {passageiro[i]}");
+            Console.WriteLine($"Origem do voo: {origem[i]}");
+            Console.WriteLine($"Destino do voo: {destino[i]}");
+            Console.WriteLine($"Data do voo: {data[i]}");
+        }
+        break;
+
+    case '0':
+        Console.WriteLine($"Volte sempre! :)");
+        break;
+}
+
+while (escolha == '1' || escolha == '2')
+{
+    Console.WriteLine($"Deseja realizar mais alguma operação? Digite 's' para sim e 'n' para não.");
+    char escolha2 = char.Parse(Console.ReadLine());
+
+    if (escolha2 == 's')
     {
-        case '1':
+        Console.WriteLine(@$"
+        Ótimo! Vamos lá.
+        Agora selecione a opção desejada:
+        1 - Cadastrar Passagem
+        2 - Listar Passagens
+        0- Sair");
+        escolha = char.Parse(Console.ReadLine());
+
+        if (escolha == '1')
+        {
             Console.WriteLine($"Insira seu nome: ");
             passageiro[indexPassageiro] = Console.ReadLine();
             Console.WriteLine($"Qual a origem do voo?: ");
@@ -52,21 +88,25 @@ while(escolha != '0')
             Console.WriteLine($"Qual a data do voo?: ");
             data[indexPassageiro] = Console.ReadLine();
             indexPassageiro++;
-            Console.WriteLine($"Ótimo! Sua passagem foi cadastrada");
-            break;
 
-        case '2':
+            Console.WriteLine($"Ótimo! Sua passagem foi cadastrada.");
+        }
+        else if (escolha == '2')
+        {
             for (int i = 0; i < indexPassageiro; i++)
             {
-                Console.WriteLine($"{passageiro}");  
-                Console.WriteLine($"{origem}");  
-                Console.WriteLine($"{destino}");  
-                Console.WriteLine($"{data}");  
+                Console.WriteLine($"Passagem #{i + 1}");
+                Console.WriteLine($"Nome do passageiro: {passageiro[i]}");
+                Console.WriteLine($"Origem do voo: {origem[i]}");
+                Console.WriteLine($"Destino do voo: {destino[i]}");
+                Console.WriteLine($"Data do voo: {data[i]}");
+                Console.WriteLine($"");
             }
-            break;
-
-        case '0':
-            Console.WriteLine($"Volte sempre! :)");
-            break;
+        }
+    }
+    else
+    {
+        Console.WriteLine($"Volte sempre! :)");
+        break;
     }
 }
